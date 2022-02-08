@@ -1,0 +1,1 @@
+<?php $con = mysqli_connect("localhost", "root", "1801116", "phpproject"); // 이 주소에 있는 db에 접속
