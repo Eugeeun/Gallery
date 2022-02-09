@@ -42,44 +42,32 @@
   // $content = str_replace(" ", "&nbsp;", $content);
   // $content = str_replace("\n", "<br>", $content);
 
-  $new_hit = $hit + 1;
-  $sql = "update community set hit=$new_hit where num=$num";
   mysqli_query($con, $sql);
   ?>
   <?php include "navbar.php"; ?>
-  <div class="community_view">
+  <div class="community_insert_form">
     <div class="title"><a href="index.php">Gallery website</a></div>
-    <ul class="view">
-      <li>
-        <span class="classification"><?= $classification ?></span>
-        <span>|</span>
-        <span class="title_article"><?= $title ?></span>
-      </li>
-      <li>
-        <span class="loggedID">Author : <?= $name ?></span>
-        <span>|</span>
-        <span class="hit"><?= $hit ?> view</span>
-      </li>
-      <li>
-        <?php
-        if ($file_copied)
-          echo "<img src='./data/$file_copied' alt='img' class='image'>";
-        ?>
-        <p class="content"><?= $content ?></p>
-      </li>
-      <li class="btns">
-        <button onclick="location.href='community_form.php?page=<?= $page ?>'">목록</button>
-        <?php
-        if ($userid === $id) {
-        ?>
-          <button onclick="location.href='community_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정</button>
-          <button onclick="location.href='community_delete.php?num=<?= $num ?>&page=<? $page ?>'">삭제</button>
-        <?php
-        }
-        ?>
-      </li>
-
-    </ul>
+    <form action="community_modify.php" method="post" name="community_insert_form" enctype="multipart/form-data">
+      <input type="hidden" name="num" value="<?= $num ?>">
+      <input type="hidden" name="file_dir" value="<?= $file_copied ?>">
+      <ul>
+        <li>
+          <select name="classification" class="classification">
+            <option value="자유">자유</option>
+            <option value="공지">공지</option>
+          </select>
+          <span class="loggedID">Author : <?= $name ?></span>
+        </li>
+        <li><input type="text" name="title" placeholder="제목" value="<?= $title ?>"></li>
+        <li><textarea name="content" rows="10" placeholder="내용"><?= $content ?></textarea></li>
+        <li><input type="file" name="upfile" class="upfile"></li>
+        <li>
+          <a href="community_form.php?page=<?= $page ?>" class="turnback">목록</a>
+          <a href="#" class="community_insert" onclick="community_check_input()">수정</a>
+          <a href="#" class="cancle" onclick="community_reset()">취소</a>
+        </li>
+      </ul>
+    </form>
   </div>
   <?php include "sidebar.php"; ?>
 </body>

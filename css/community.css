@@ -79,13 +79,18 @@
 
 #page_num .page_link {
   border: 1px solid var(--clear-grey);
-  padding: 6px 12px;
+  padding: 4px;
   text-align: center;
 }
 
 #page_num .selected {
   background-color: var(--clear-black);
   color: var(--white);
+}
+
+#page_num li a,
+#page_num li b {
+  padding: 6px 12px;
 }
 
 /* insert_form */
