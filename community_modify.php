@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
 </head>
 <?php
-unlink('./data/' . $_POST['file_dir']);
+unlink('./data/' . $_POST['file_dir']); // 이전 경로의 이미지를 지워줌 이미지가 없다면 지우지 않음
 
 $classification = htmlspecialchars($_POST['classification']);
 $title = htmlspecialchars($_POST['title']);

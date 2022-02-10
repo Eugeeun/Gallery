@@ -73,7 +73,7 @@
         if ($userid === $id) {
         ?>
           <button onclick="location.href='community_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정</button>
-          <button onclick="location.href='community_delete.php?num=<?= $num ?>&page=<? $page ?>'">삭제</button>
+          <button onclick="if(!confirm('정말로 삭제하시겠습니까?')){return false;} location.href='community_delete.php?num=<?= $num ?>&page=<? $page ?>'">삭제</button>
         <?php
         }
         ?>
