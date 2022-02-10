@@ -6,7 +6,10 @@
     <li><a href="#">Dummy Item4</a></li>
     <li><a href="#">Dummy Item5</a></li>
     <li><a href="#">Dummy Item6</a></li>
-    <li><a href="logout.php">Sign out</a></li>
+    <?php
+    if (isset($_SESSION['userid']))
+      echo "<li><a href='logout.php'>Sign out</a></li>";
+    ?>
   </ul>
   <button class="menuBtn" onclick="sidebarTog()">
     <i class="fas fa-bars"></i>
