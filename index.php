@@ -20,9 +20,10 @@
   <section class="category">
     <ul class="items">
       <li>All</li>
-      <li>Gallery</li>
-      <li>Artist Website</li>
-      <li>Template</li>
+      <li>Human</li>
+      <li>Animal</li>
+      <li>Nature</li>
+      <li>Painting</li>
     </ul>
   </section>
   <section class="contents">

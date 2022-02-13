@@ -7,8 +7,6 @@ unlink('./data/' . $_POST['file_dir']); // 이전 경로의 이미지를 지워�
 $classification = htmlspecialchars($_POST['classification']);
 $title = htmlspecialchars($_POST['title']);
 $content = htmlspecialchars($_POST['content']);
-
-$regist_day = date('Y-m-d');
 $upload_dir = './data/';
 
 $upfile_name  = $_FILES["upfile"]["name"]; // 이전 폼 name="upfile"에서 전송됨
@@ -52,7 +50,7 @@ if ($upfile_name && !$upfile_error) {
 }
 
 include "connectMySQL.php";
-$sql = "update community set classification='$classification', title='$title', content='$content', regist_day='$regist_day', hit='0'";
+$sql = "update community set classification='$classification', title='$title', content='$content', hit='0'";
 $sql .= ", file_name='$upfile_name', file_type='$upfile_type', file_copied='$copied_file_name'";
 $sql .= "where num={$_POST['num']}";
 mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행

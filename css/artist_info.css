@@ -1,0 +1,77 @@
+.artist_info_insert_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+  max-width: 1200px;
+  margin: auto;
+}
+
+.artist_info_insert_form .title {
+  padding: var(--padding-upandbom);
+  font-family: 'Oswald', sans-serif;
+  font-size: calc(var(--font-large) * 2);
+  text-transform: uppercase;
+  margin: 5% 0;
+}
+
+.artist_info_insert_form .title a {
+  color: var(--black);
+}
+
+.artist_info_insert_form .artist_info .upfile {
+  border: none;
+  padding: 0px;
+}
+
+.artist_info_insert_form ul {
+  margin-bottom: var(--padding-upandbom);
+}
+
+.artist_info_insert_form li {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.artist_info_insert_form li .classification {
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.artist_info_insert_form li a {
+  border: 2px solid var(--black);
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+  background-color: var(--clear-black);
+  padding: 4px;
+  color: var(--white);
+  margin: 5px;
+}
+
+.artist_info_insert_form a:hover {
+  border: 2px solid var(--white);
+}
+
+.artist_info_insert_form li input {
+  width: 100%;
+}
+
+.artist_info_insert_form li textarea {
+  border: 1px solid var(--black);
+  padding: var(--padding-side);
+  margin: 6px;
+  font-size: var(--font-medium);
+  border-radius: 4px;
+  width: 100%;
+}
+
+.artist_info_insert_form li i {
+  font-size: calc(var(--font-large) * 1.5);
+  line-height: 60px;
+  margin-left: 6px;
+  width: 50px;
+  height: 60px;
+}
