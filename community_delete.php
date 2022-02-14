@@ -6,7 +6,7 @@ $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($result);
 $file_copied  = $row["file_copied"];
 // echo $file_copied;
-unlink('./data/' . $file_copied);
+unlink('./data/community/' . $file_copied);
 
 $sql = "
   delete from community

@@ -33,7 +33,7 @@
           </select>
           <input type="file" name="upfile" class="upfile">
         </li>
-        <li><textarea name="content" rows="10" placeholder="소개"></textarea></li>
+        <li><textarea name="description" rows="10" placeholder="소개"></textarea></li>
         <li>
           <i class="fas fa-link"></i>
           <input type="text" name="websiteURL" placeholder="웹사이트 주소">

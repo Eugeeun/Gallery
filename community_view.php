@@ -63,7 +63,7 @@
       <li>
         <?php
         if ($file_copied)
-          echo "<img src='./data/$file_copied' alt='img' class='image'>";
+          echo "<img src='./data/community/$file_copied' alt='img' class='image'>";
         ?>
         <p class="content"><?= $content ?></p>
       </li>

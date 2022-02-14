@@ -1,0 +1,17 @@
+create table myinfo
+(
+	num int not null auto_increment,
+    classification char(20) not null,
+    id char(15) not null,
+    name char(10) not null,
+    description char(200) not null,
+    hit int not null,
+    websiteURL varchar(200) not null,
+    githubURL varchar(200) null,
+    facebookURL varchar(200) null,
+    instagramURL varchar(200) null,
+    file_name char(40) not null,
+    file_type char(40) not null,
+    file_copied char(40) not null,
+    primary key(num)
+);

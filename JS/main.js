@@ -120,3 +120,30 @@ function community_reset() {
   document.community_insert_form.content.value = '';
   document.community_insert_form.upfile.value = '';
 }
+
+// artist_info
+function artist_check_input() {
+  if (!document.artist_info_insert_form.description.value) {
+    alert('설명을 입력해주세요');
+    document.artist_info_insert_form.description.focus();
+    return;
+  }
+  if (!document.artist_info_insert_form.upfile.value) {
+    alert('대표 사진을 등록해주세요');
+    return;
+  }
+  if (!document.artist_info_insert_form.websiteURL.value) {
+    alert('웹사이트 주소를 입력해주세요');
+    return;
+  }
+  document.artist_info_insert_form.submit();
+}
+
+function artist_reset() {
+  document.artist_info_insert_form.description.value = '';
+  document.artist_info_insert_form.upfile.value = '';
+  document.artist_info_insert_form.websiteURL.value = '';
+  document.artist_info_insert_form.githubURL.value = '';
+  document.artist_info_insert_form.facebookURL.value = '';
+  document.artist_info_insert_form.instagramURL.value = '';
+}

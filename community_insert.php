@@ -11,7 +11,7 @@ $title = htmlspecialchars($_POST['title']);
 $content = htmlspecialchars($_POST['content']);
 
 $regist_day = date('Y-m-d');
-$upload_dir = './data/';
+$upload_dir = './data/community/';
 
 $upfile_name  = $_FILES["upfile"]["name"]; // 이전 폼 name="upfile"에서 전송됨
 $upfile_tmp_name = $_FILES["upfile"]["tmp_name"];

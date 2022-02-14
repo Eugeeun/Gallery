@@ -2,12 +2,27 @@
   <meta charset="UTF-8">
 </head>
 <?php
-unlink('./data/community/' . $_POST['file_dir']); // 이전 경로의 이미지를 지워줌 이미지가 없다면 지우지 않음
+session_start();
+$userid = $_SESSION['userid'];
+$username = $_SESSION['username'];
 
 $classification = htmlspecialchars($_POST['classification']);
-$title = htmlspecialchars($_POST['title']);
-$content = htmlspecialchars($_POST['content']);
-$upload_dir = './data/community/';
+$description = htmlspecialchars($_POST['description']);
+$websiteURL = htmlspecialchars($_POST['websiteURL']);
+$githubURL = "";
+$facebookURL = "";
+$instagramURL = "";
+if (isset($_POST['githubURL'])) {
+  $githubURL = htmlspecialchars($_POST['githubURL']);
+}
+if (isset($_POST['facebookURL'])) {
+  $facebookURL = htmlspecialchars($_POST['facebookURL']);
+}
+if (isset($_POST['instagramURL'])) {
+  $instagramURL = htmlspecialchars($_POST['instagramURL']);
+}
+
+$upload_dir = './data/artist_info/';
 
 $upfile_name  = $_FILES["upfile"]["name"]; // 이전 폼 name="upfile"에서 전송됨
 $upfile_tmp_name = $_FILES["upfile"]["tmp_name"];
@@ -50,10 +65,13 @@ if ($upfile_name && !$upfile_error) {
 }
 
 include "connectMySQL.php";
-$sql = "update community set classification='$classification', title='$title', content='$content', hit='0'";
-$sql .= ", file_name='$upfile_name', file_type='$upfile_type', file_copied='$copied_file_name'";
-$sql .= "where num={$_POST['num']}";
+$sql = "insert into myinfo (classification, id, name, description, hit, websiteURL, githubURL, facebookURL, instagramURL, file_name, file_type, file_copied) ";
+$sql .= "values('$classification', '$userid', '$username', '$description', 0, '$websiteURL','$githubURL','$facebookURL','$instagramURL',";
+$sql .= "'$upfile_name', '$upfile_type', '$copied_file_name')";
 mysqli_query($con, $sql);  // $sql 에 저장된 명령 실행
 
+
+
 mysqli_close($con);                // DB 연결 끊기
-header('Location: community_form.php');
+header('Location: index.php');
+?>
