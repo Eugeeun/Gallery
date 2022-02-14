@@ -49,7 +49,7 @@
     </div>
     <ul class="links">
       <li class="websiteURL">
-        <a href="<?= $websiteURL ?>"><i class="fas fa-link"></i></a>
+        <a href="https://<?= $websiteURL ?>"><i class="fas fa-link"></i></a>
       </li>
       <li class="githubURL">
         <a href="<?= $githubURL ?>"><i class="fab fa-github"></i></a>

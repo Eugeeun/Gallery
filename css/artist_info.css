@@ -98,7 +98,7 @@
 }
 
 .artist_info_view img {
-  max-width: 50%;
+  max-width: 100%;
   overflow: hidden;
   border: 1px solid var(--black);
   border-radius: 10px;
@@ -106,7 +106,7 @@
 
 .artist_info_view .image_and_desc .desc {
   margin: var(--padding-upandbom) 0;
-  max-width: 50%;
+  max-width: 100%;
 }
 
 .artist_info_view .links {
