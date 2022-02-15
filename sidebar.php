@@ -5,8 +5,6 @@
     <?php
     if (isset($_SESSION['userid']))
       echo "<li><a href='artist_info.php?id={$_SESSION['userid']}'>MyInfo</a></li>";
-    else
-      echo "<li><a href='artist_info.php'>MyInfo</a></li>";
     ?>
     <?php
     if (isset($_SESSION['userid']))

@@ -17,25 +17,21 @@
 <body>
   <?php
   session_start();
-  if (!isset($_SESSION['userid'])) {
-    header('Location: login_form.php');
-  } else {
-    $id = $_GET['id'];
-    include "connectMySQL.php";
-    $sql = "select * from myinfo where id='{$id}'";
-    $result = mysqli_query($con, $sql);
-    if (!mysqli_num_rows($result)) {
-      header('Location: artist_info_insert_form.php');
-    }
-    $row = mysqli_fetch_array($result);
-    $name = $row['name'];
-    $description  =  $row['description'];
-    $websiteURL   =  $row['websiteURL'];
-    $githubURL    =  $row['githubURL'];
-    $facebookURL  =  $row['facebookURL'];
-    $instagramURL =  $row['instagramURL'];
-    $file_copied  =  $row['file_copied'];
+  $id = $_GET['id'];
+  include "connectMySQL.php";
+  $sql = "select * from myinfo where id='{$id}'";
+  $result = mysqli_query($con, $sql);
+  if (!mysqli_num_rows($result)) {
+    header('Location: artist_info_insert_form.php');
   }
+  $row = mysqli_fetch_array($result);
+  $name = $row['name'];
+  $description  =  $row['description'];
+  $websiteURL   =  $row['websiteURL'];
+  $githubURL    =  $row['githubURL'];
+  $facebookURL  =  $row['facebookURL'];
+  $instagramURL =  $row['instagramURL'];
+  $file_copied  =  $row['file_copied'];
   ?>
   <?php include "navbar.php"; ?>
   <div class="artist_info_view">
@@ -71,13 +67,15 @@
       ?>
     </ul>
     <?php
-    if ($_SESSION['userid'] == $id) {
+    if (isset($_SESSION['userid'])) {
+      if ($_SESSION['userid'] == $id) {
     ?>
-      <ul class="btns">
-        <li class="modify"><a href="#">수정</a></li>
-        <li class="delete"><a href="#">삭제</a></li>
-      </ul>
+        <ul class="btns">
+          <li class="modify"><a href="#">수정</a></li>
+          <li class="delete"><a href="#">삭제</a></li>
+        </ul>
     <?php
+      }
     }
     ?>
   </div>
