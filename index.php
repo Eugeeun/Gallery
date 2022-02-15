@@ -28,69 +28,54 @@
   </section>
   <section class="contents">
     <ul class="contentlist">
-      <li>
-        <img src="images/img1.jpg" alt="">
-        <div class="info">
-          <span class="name">Eugene</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img2.jpg" alt="">
-        <div class="info">
-          <span class="name">Geeun</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img3.jpg" alt="">
-        <div class="info">
-          <span class="name">Geeun</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img4.jpg" alt="">
-        <div class="info">
-          <span class="name">Gerrard</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img5.jpg" alt="">
-        <div class="info">
-          <span class="name">Lampard</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img6.jpg" alt="">
-        <div class="info">
-          <span class="name">Scholes</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img7.jpg" alt="">
-        <div class="info">
-          <span class="name">Ronaldo</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img8.jpg" alt="">
-        <div class="info">
-          <span class="name">Kaka</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
-      <li>
-        <img src="images/img9.jpg" alt="">
-        <div class="info">
-          <span class="name">Bale</span>
-          <a href="#" class="link">visit website</a>
-        </div>
-      </li>
+      <?php
+      if (isset($_GET["page"]))
+        $page = $_GET["page"];
+      else
+        $page = 1;
+
+      include "connectMySQL.php";
+      $sql = "select  * from myinfo order by num asc";
+      $result = mysqli_query($con, $sql);
+      $total_record = mysqli_num_rows($result);
+
+      $scale = 10;
+
+      // 전체 페이지 수($total_page) 계산
+      if ($total_record % $scale == 0)
+        $total_page = floor($total_record / $scale);
+      else
+        $total_page = floor($total_record / $scale) + 1;
+
+      // 표시할 페이지($page)에 따라 $start 계산 
+      $start = ($page - 1) * $scale;
+
+      $number = $total_record - $start;
+
+      for ($i = $start; $i < $start + $scale && $i < $total_record; $i++) {
+        mysqli_data_seek($result, $i);
+        // 가져올 레코드로 위치(포인터) 이동
+        $row = mysqli_fetch_array($result);
+        // 하나의 레코드 가져오기
+        $classification = $row["classification"];
+        $id = $row['id'];
+        $name        = $row["name"];
+        $websiteURL  = $row['websiteURL'];
+        $file_image = $row['file_copied'];
+      ?>
+        <li>
+          <a href="artist_info.php?id=<?= $id ?>">
+            <img src="./data/artist_info/<?= $file_image ?>" alt="title_img">
+          </a>
+          <div class="info">
+            <span class="name"><?= $name ?></span>
+            <a href="https://<?= $websiteURL ?>" class="link">visit website</a>
+          </div>
+        </li>
+      <?php
+      }
+      mysqli_close($con);
+      ?>
     </ul>
   </section>
   <?php include "sidebar.php" ?>

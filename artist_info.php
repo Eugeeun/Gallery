@@ -20,8 +20,9 @@
   if (!isset($_SESSION['userid'])) {
     header('Location: login_form.php');
   } else {
+    $id = $_GET['id'];
     include "connectMySQL.php";
-    $sql = "select * from myinfo where id='{$_SESSION['userid']}'";
+    $sql = "select * from myinfo where id='{$id}'";
     $result = mysqli_query($con, $sql);
     if (!mysqli_num_rows($result)) {
       header('Location: artist_info_insert_form.php');
@@ -51,20 +52,34 @@
       <li class="websiteURL">
         <a href="https://<?= $websiteURL ?>"><i class="fas fa-link"></i></a>
       </li>
-      <li class="githubURL">
-        <a href="<?= $githubURL ?>"><i class="fab fa-github"></i></a>
-      </li>
-      <li class="facebookURL">
-        <a href="<?= $facebookURL ?>"><i class="fab fa-facebook"></i></a>
-      </li>
-      <li class="instagramURL">
-        <a href="<?= $instagramURL ?>"><i class="fab fa-instagram"></i></a>
-      </li>
+      <?php
+      if ($githubURL != '') {
+        echo "<li class='githubURL'>
+        <a href='https://$githubURL'><i class='fab fa-github'></i></a>
+      </li>";
+      }
+      if ($facebookURL != '') {
+        echo "<li class='facebookURL'>
+        <a href='https://$facebookURL'><i class='fab fa-facebook'></i></a>
+      </li>";
+      }
+      if ($instagramURL != '') {
+        echo "<li class='instagramURL'>
+        <a href='https://$instagramURL'><i class='fab fa-instagram'></i></a>
+      </li>";
+      }
+      ?>
     </ul>
-    <ul class="btns">
-      <li class="modify"><a href="#">수정</a></li>
-      <li class="delete"><a href="#">삭제</a></li>
-    </ul>
+    <?php
+    if ($_SESSION['userid'] == $id) {
+    ?>
+      <ul class="btns">
+        <li class="modify"><a href="#">수정</a></li>
+        <li class="delete"><a href="#">삭제</a></li>
+      </ul>
+    <?php
+    }
+    ?>
   </div>
   <?php include "sidebar.php"; ?>
 </body>
