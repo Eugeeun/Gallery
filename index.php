@@ -39,7 +39,7 @@
       $result = mysqli_query($con, $sql);
       $total_record = mysqli_num_rows($result);
 
-      $scale = 10;
+      $scale = 1;
 
       // 전체 페이지 수($total_page) 계산
       if ($total_record % $scale == 0)
@@ -75,6 +75,31 @@
       <?php
       }
       mysqli_close($con);
+      ?>
+    </ul>
+    </ul>
+    <ul id="page_num">
+      <?php
+      if ($total_page >= 2 && $page >= 2) {
+        $new_page = $page - 1;
+        echo "<li class='page_link'><a href='index.php?page=$new_page'>이전</a> </li>";
+      } else
+        echo "<li>&nbsp;</li>";
+
+      // 게시판 목록 하단에 페이지 링크 번호 출력
+      for ($i = 1; $i <= $total_page; $i++) {
+        if ($page == $i)     // 현재 페이지 번호 링크 안함
+        {
+          echo "<li class='page_link selected'><b> $i </b></li>";
+        } else {
+          echo "<li class='page_link'><a href='index.php?page=$i'> $i </a><li>";
+        }
+      }
+      if ($total_page >= 2 && $page != $total_page) {
+        $new_page = $page + 1;
+        echo "<li class='page_link'> <a href='index.php?page=$new_page'>다음</a> </li>";
+      } else
+        echo "<li>&nbsp;</li>";
       ?>
     </ul>
   </section>

@@ -177,3 +177,26 @@
     width: 20%;
   }
 }
+
+/* page */
+#page_num {
+  display: flex;
+  justify-content: center;
+  margin: var(--padding-upandbom);
+}
+
+#page_num .page_link {
+  border: 1px solid var(--clear-grey);
+  padding: 4px;
+  text-align: center;
+}
+
+#page_num .selected {
+  background-color: var(--clear-black);
+  color: var(--white);
+}
+
+#page_num li a,
+#page_num li b {
+  padding: 6px 12px;
+}
