@@ -46,22 +46,22 @@
     </div>
     <ul class="links">
       <li class="websiteURL">
-        <a href="https://<?= $websiteURL ?>"><i class="fas fa-link"></i></a>
+        <a href="<?= $websiteURL ?>"><i class="fas fa-link"></i></a>
       </li>
       <?php
       if ($githubURL != '') {
         echo "<li class='githubURL'>
-        <a href='https://$githubURL'><i class='fab fa-github'></i></a>
+        <a href='$githubURL'><i class='fab fa-github'></i></a>
       </li>";
       }
       if ($facebookURL != '') {
         echo "<li class='facebookURL'>
-        <a href='https://$facebookURL'><i class='fab fa-facebook'></i></a>
+        <a href='$facebookURL'><i class='fab fa-facebook'></i></a>
       </li>";
       }
       if ($instagramURL != '') {
         echo "<li class='instagramURL'>
-        <a href='https://$instagramURL'><i class='fab fa-instagram'></i></a>
+        <a href='$instagramURL'><i class='fab fa-instagram'></i></a>
       </li>";
       }
       ?>
@@ -71,8 +71,8 @@
       if ($_SESSION['userid'] == $id) {
     ?>
         <ul class="btns">
-          <li class="modify"><a href="#">수정</a></li>
-          <li class="delete"><a href="#">삭제</a></li>
+          <li class="modify"><button onclick="location.href='artist_info_modify_form.php?id=<?= $id ?>'">수정</button></li>
+          <li class="delete"><button onclick="if(!confirm('정말로 삭제하시겠습니까?')){return false;} location.href='artist_info_delete.php?id=<?= $id ?>'">삭제</button></li>
         </ul>
     <?php
       }

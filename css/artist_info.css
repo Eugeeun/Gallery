@@ -134,6 +134,7 @@
   background-color: var(--clear-black);
 }
 
-.artist_info_view .btns li a {
+.artist_info_view .btns li button {
   color: var(--white);
+  font-size: var(--font-medium);
 }

@@ -39,7 +39,7 @@
       $result = mysqli_query($con, $sql);
       $total_record = mysqli_num_rows($result);
 
-      $scale = 1;
+      $scale = 12;
 
       // 전체 페이지 수($total_page) 계산
       if ($total_record % $scale == 0)
@@ -69,7 +69,7 @@
           </a>
           <div class="info">
             <span class="name"><?= $name ?></span>
-            <a href="https://<?= $websiteURL ?>" class="link">visit website</a>
+            <a href="<?= $websiteURL ?>" class="link">visit website</a>
           </div>
         </li>
       <?php
