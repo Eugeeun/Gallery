@@ -65,22 +65,34 @@
 
 /* category */
 .category {
-  padding: calc(var(--padding-upandbom) * 2) var(--padding-side)
-    var(--padding-upandbom);
+  padding: var(--padding-upandbom) var(--padding-side);
   top: 100%;
 }
 
-.category .items {
+.category {
   display: flex;
   justify-content: space-around;
   font-size: var(--font-small);
+}
+
+.category li a {
+  padding: 4px var(--padding-side);
+  border: 1px solid var(--white);
+}
+
+.category li a:hover {
+  color: var(--clear-black);
+  color: var(--white);
+  background-color: var(--clear-black);
+  border: 1px solid var(--clear-black);
+  border-radius: 4px;
 }
 
 /* contents */
 .contents {
   display: flex;
   flex-direction: column;
-  padding: calc(var(--padding-upandbom) * 2) var(--padding-side);
+  padding: 0 var(--padding-side);
 }
 
 .contents .contentlist li {

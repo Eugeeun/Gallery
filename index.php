@@ -17,25 +17,51 @@
 <body>
   <?php include "navbar.php" ?>
   <?php include "header.php"; ?>
-  <section class="category">
-    <ul class="items">
-      <li>All</li>
-      <li>Human</li>
-      <li>Animal</li>
-      <li>Nature</li>
-      <li>Painting</li>
-    </ul>
-  </section>
+  <ul class="category">
+    <li><a href="index.php?sort=All&page=1">All</a></li>
+    <li><a href="index.php?sort=Human&page=1">Human</a></li>
+    <li><a href="index.php?sort=Animal&page=1">Animal</a></li>
+    <li><a href="index.php?sort=Nature&page=1">Nature</a></li>
+    <li><a href="index.php?sort=Painting&page=1">Painting</a></li>
+  </ul>
   <section class="contents">
     <ul class="contentlist">
       <?php
+      $sort = "";
+      if (isset($_GET['sort'])) {
+        switch ($_GET['sort']) {
+          case 'All':
+            $sort = "All";
+            break;
+          case 'Human':
+            $sort = "인물";
+            break;
+          case 'Animal':
+            $sort = "동물";
+            break;
+          case 'Nature':
+            $sort = "풍경";
+            break;
+          case 'Painting':
+            $sort = "그림";
+            break;
+        }
+      } else {
+        $sort = 'All';
+      }
+
       if (isset($_GET["page"]))
         $page = $_GET["page"];
       else
         $page = 1;
 
       include "connectMySQL.php";
-      $sql = "select  * from myinfo order by num asc";
+      $sql = "";
+      if ($sort == 'All') {
+        $sql = "select  * from myinfo order by num asc";
+      } else {
+        $sql = "select  * from myinfo where classification = '$sort' order by num asc";
+      }
       $result = mysqli_query($con, $sql);
       $total_record = mysqli_num_rows($result);
 
@@ -82,7 +108,7 @@
       <?php
       if ($total_page >= 2 && $page >= 2) {
         $new_page = $page - 1;
-        echo "<li class='page_link'><a href='index.php?page=$new_page'>이전</a> </li>";
+        echo "<li class='page_link'><a href='index.php?sort=$sort&page=$new_page'>이전</a> </li>";
       } else
         echo "<li>&nbsp;</li>";
 
@@ -92,12 +118,12 @@
         {
           echo "<li class='page_link selected'><b> $i </b></li>";
         } else {
-          echo "<li class='page_link'><a href='index.php?page=$i'> $i </a><li>";
+          echo "<li class='page_link'><a href='index.php?sort=$sort&page=$i'> $i </a><li>";
         }
       }
       if ($total_page >= 2 && $page != $total_page) {
         $new_page = $page + 1;
-        echo "<li class='page_link'> <a href='index.php?page=$new_page'>다음</a> </li>";
+        echo "<li class='page_link'> <a href='index.php?sort=$sort&page=$new_page'>다음</a> </li>";
       } else
         echo "<li>&nbsp;</li>";
       ?>
